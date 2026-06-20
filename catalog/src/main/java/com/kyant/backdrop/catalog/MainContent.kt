@@ -47,5 +47,11 @@ fun MainContent() {
         CatalogDestination.ProgressiveBlur -> ProgressiveBlurContent()
         CatalogDestination.ScrollContainer -> ScrollContainerContent()
         CatalogDestination.LazyScrollContainer -> LazyScrollContainerContent()
+
+        CatalogDestination.Wallet -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.WalletScreen(it) }
+        CatalogDestination.FinanceDashboard -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.FinanceDashboardScreen(it) }
+        CatalogDestination.ExpenseTracker -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.ExpenseTrackerScreen(it) }
+        CatalogDestination.Settings -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.SettingsScreen(it) }
+        CatalogDestination.Profile -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.ProfileScreen(it) }
     }
 }
