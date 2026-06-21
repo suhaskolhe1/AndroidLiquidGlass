@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.drawOutline
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.platform.LocalContext
@@ -32,7 +33,7 @@ fun Modifier.adaptiveGlass(
     color: Color = Color.Unspecified
 ): Modifier = composed {
     val context = LocalContext.current
-    val performanceLevel = remember { DeviceCapability.getPerformanceLevel(context) }
+    val performanceLevel = DeviceCapability.getPerformanceLevel(context)
 
     when (performanceLevel) {
         GlassPerformanceLevel.High -> {
@@ -51,26 +52,11 @@ fun Modifier.adaptiveGlass(
                     // Highlight/Border
 
                     val outline = shape.createOutline(size, layoutDirection, this)
-                    if (outline is Outline.Rounded) {
-                        drawRoundRect(
-                            color = Color.White.copy(alpha = style.borderAlpha),
-                            size = size,
-                            cornerRadius = outline.roundRect.topLeftCornerRadius,
-                            style = Stroke(width = 1.dp.toPx())
-                        )
-                    } else if (outline is Outline.Generic) {
-                         drawPath(
-                             path = outline.path,
-                             color = Color.White.copy(alpha = style.borderAlpha),
-                             style = Stroke(width = 1.dp.toPx())
-                         )
-                    } else {
-                        drawRect(
-                            color = Color.White.copy(alpha = style.borderAlpha),
-                            size = size,
-                            style = Stroke(width = 1.dp.toPx())
-                        )
-                    }
+                    drawOutline(
+                        outline = outline,
+                        color = Color.White.copy(alpha = style.borderAlpha),
+                        style = Stroke(width = 1.dp.toPx())
+                    )
                 }
             )
         }
@@ -88,26 +74,11 @@ fun Modifier.adaptiveGlass(
                     drawRect(Color.White.copy(alpha = 1f - style.transparency), blendMode = BlendMode.SrcOver)
 
                     val outline = shape.createOutline(size, layoutDirection, this)
-                    if (outline is Outline.Rounded) {
-                        drawRoundRect(
-                            color = Color.White.copy(alpha = style.borderAlpha),
-                            size = size,
-                            cornerRadius = outline.roundRect.topLeftCornerRadius,
-                            style = Stroke(width = 1.dp.toPx())
-                        )
-                    } else if (outline is Outline.Generic) {
-                         drawPath(
-                             path = outline.path,
-                             color = Color.White.copy(alpha = style.borderAlpha),
-                             style = Stroke(width = 1.dp.toPx())
-                         )
-                    } else {
-                        drawRect(
-                            color = Color.White.copy(alpha = style.borderAlpha),
-                            size = size,
-                            style = Stroke(width = 1.dp.toPx())
-                        )
-                    }
+                    drawOutline(
+                        outline = outline,
+                        color = Color.White.copy(alpha = style.borderAlpha),
+                        style = Stroke(width = 1.dp.toPx())
+                    )
                 }
             )
         }
@@ -116,7 +87,7 @@ fun Modifier.adaptiveGlass(
             this.drawWithCache {
                 val gradientBrush = Brush.linearGradient(
                     colors = listOf(
-                        style.fallbackColor.copy(alpha = style.fallbackColor.alpha * 1.2f),
+                        style.fallbackColor.copy(alpha = (style.fallbackColor.alpha * 1.2f).coerceAtMost(1f)),
                         style.fallbackColor
                     ),
                     start = Offset(0f, 0f),
@@ -126,46 +97,18 @@ fun Modifier.adaptiveGlass(
                 val outline = shape.createOutline(size, layoutDirection, this)
 
                 onDrawWithContent {
-                    if (outline is Outline.Rounded) {
-                        drawRoundRect(
-                            brush = gradientBrush,
-                            size = size,
-                            cornerRadius = outline.roundRect.topLeftCornerRadius
-                        )
-                    } else if (outline is Outline.Generic) {
-                         drawPath(
-                             path = outline.path,
-                             brush = gradientBrush
-                         )
-                    } else {
-                        drawRect(
-                            brush = gradientBrush,
-                            size = size
-                        )
-                    }
+                    drawOutline(
+                        outline = outline,
+                        brush = gradientBrush
+                    )
 
                     drawContent()
 
-                    if (outline is Outline.Rounded) {
-                        drawRoundRect(
-                            color = Color.White.copy(alpha = style.borderAlpha),
-                            size = size,
-                            cornerRadius = outline.roundRect.topLeftCornerRadius,
-                            style = Stroke(width = 1.dp.toPx())
-                        )
-                    } else if (outline is Outline.Generic) {
-                         drawPath(
-                             path = outline.path,
-                             color = Color.White.copy(alpha = style.borderAlpha),
-                             style = Stroke(width = 1.dp.toPx())
-                         )
-                    } else {
-                        drawRect(
-                            color = Color.White.copy(alpha = style.borderAlpha),
-                            size = size,
-                            style = Stroke(width = 1.dp.toPx())
-                        )
-                    }
+                    drawOutline(
+                        outline = outline,
+                        color = Color.White.copy(alpha = style.borderAlpha),
+                        style = Stroke(width = 1.dp.toPx())
+                    )
                 }
             }
         }

@@ -41,6 +41,15 @@ fun HomeContent(onNavigate: (CatalogDestination) -> Unit) {
         )
 
         Column {
+            Subtitle("Adaptive Playground")
+            ListItem({ onNavigate(CatalogDestination.AdaptivePlayground) }, "Interactive Playground")
+
+            Subtitle("Adaptive Glass Components")
+            ListItem({ onNavigate(CatalogDestination.GlassCardsShowcase) }, "Glass Cards")
+            ListItem({ onNavigate(CatalogDestination.GlassButtonsShowcase) }, "Glass Buttons")
+            ListItem({ onNavigate(CatalogDestination.GlassInputsShowcase) }, "Glass Inputs")
+            ListItem({ onNavigate(CatalogDestination.GlassNavigationShowcase) }, "Glass Navigation")
+
             Subtitle("Adaptive Glass Apps")
             ListItem({ onNavigate(CatalogDestination.Wallet) }, "Wallet")
             ListItem({ onNavigate(CatalogDestination.FinanceDashboard) }, "Finance Dashboard")

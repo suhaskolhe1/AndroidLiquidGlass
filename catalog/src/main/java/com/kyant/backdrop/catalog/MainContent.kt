@@ -53,5 +53,11 @@ fun MainContent() {
         CatalogDestination.ExpenseTracker -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.ExpenseTrackerScreen(it) }
         CatalogDestination.Settings -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.SettingsScreen(it) }
         CatalogDestination.Profile -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.ProfileScreen(it) }
+
+        CatalogDestination.AdaptivePlayground -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.AdaptivePlaygroundScreen(it) }
+        CatalogDestination.GlassCardsShowcase -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.GlassCardsShowcase(it) }
+        CatalogDestination.GlassButtonsShowcase -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.GlassButtonsShowcase(it) }
+        CatalogDestination.GlassInputsShowcase -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.GlassInputsShowcase(it) }
+        CatalogDestination.GlassNavigationShowcase -> BackdropDemoScaffold { com.kyant.backdrop.catalog.screens.GlassNavigationShowcase(it) }
     }
 }

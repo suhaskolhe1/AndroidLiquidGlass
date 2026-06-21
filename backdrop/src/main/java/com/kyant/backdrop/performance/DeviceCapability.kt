@@ -3,6 +3,9 @@ package com.kyant.backdrop.performance
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 
 enum class GlassPerformanceLevel {
     Low,
@@ -12,11 +15,12 @@ enum class GlassPerformanceLevel {
 
 object DeviceCapability {
 
-    var manualOverride: GlassPerformanceLevel? = null
+    var manualOverride: GlassPerformanceLevel? by mutableStateOf(null)
 
     fun getPerformanceLevel(context: Context): GlassPerformanceLevel {
-        if (manualOverride != null) {
-            return manualOverride!!
+        val override = manualOverride
+        if (override != null) {
+            return override
         }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {

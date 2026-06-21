@@ -24,5 +24,12 @@ enum class CatalogDestination {
     FinanceDashboard,
     ExpenseTracker,
     Settings,
-    Profile
+    Profile,
+
+    // Showcase
+    AdaptivePlayground,
+    GlassCardsShowcase,
+    GlassButtonsShowcase,
+    GlassInputsShowcase,
+    GlassNavigationShowcase
 }
