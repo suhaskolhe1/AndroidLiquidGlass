@@ -18,4 +18,18 @@ enum class CatalogDestination {
     ProgressiveBlur,
     ScrollContainer,
     LazyScrollContainer,
+
+    // New Apps
+    Wallet,
+    FinanceDashboard,
+    ExpenseTracker,
+    Settings,
+    Profile,
+
+    // Showcase
+    AdaptivePlayground,
+    GlassCardsShowcase,
+    GlassButtonsShowcase,
+    GlassInputsShowcase,
+    GlassNavigationShowcase
 }
